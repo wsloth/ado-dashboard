@@ -1,11 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../ado-dashboard-frontend.js';
+import '../ado-dashboard.js';
 
-describe('AdoDashboardFrontend', () => {
+describe('AdoDashboard', () => {
   it('has page "main" by default', async () => {
     const el = await fixture(html`
-      <ado-dashboard-frontend></ado-dashboard-frontend>
+      <ado-dashboard></ado-dashboard>
     `);
 
     expect(el.page).to.equal('main');
@@ -16,7 +16,7 @@ describe('AdoDashboardFrontend', () => {
 
   it('renders default fallback content', async () => {
     const el = await fixture(html`
-      <ado-dashboard-frontend></ado-dashboard-frontend>
+      <ado-dashboard></ado-dashboard>
     `);
     el.page = undefined;
 
@@ -28,7 +28,7 @@ describe('AdoDashboardFrontend', () => {
 
   it('renders page-one if page property is set to pageOne', async () => {
     const el = await fixture(html`
-      <ado-dashboard-frontend page="pageOne"></ado-dashboard-frontend>
+      <ado-dashboard page="pageOne"></ado-dashboard>
     `);
     expect(el.shadowRoot.querySelector('main')).lightDom.to.equal(`
       <page-one></page-one>
@@ -37,7 +37,7 @@ describe('AdoDashboardFrontend', () => {
 
   it('changes the page if a menu link gets clicked', async () => {
     const el = await fixture(html`
-      <ado-dashboard-frontend></ado-dashboard-frontend>
+      <ado-dashboard></ado-dashboard>
     `);
     el.shadowRoot.querySelectorAll('header a')[2].click();
 
@@ -46,7 +46,7 @@ describe('AdoDashboardFrontend', () => {
 
   it('matches the snapshot', async () => {
     const el = await fixture(html`
-      <ado-dashboard-frontend></ado-dashboard-frontend>
+      <ado-dashboard></ado-dashboard>
     `);
 
     expect(el).shadowDom.to.equalSnapshot();
@@ -54,7 +54,7 @@ describe('AdoDashboardFrontend', () => {
 
   it('passes the a11y audit', async () => {
     const el = await fixture(html`
-      <ado-dashboard-frontend></ado-dashboard-frontend>
+      <ado-dashboard></ado-dashboard>
     `);
 
     await expect(el).shadowDom.to.be.accessible();
