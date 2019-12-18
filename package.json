@@ -1,0 +1,33 @@
+{
+  "name": "ado-dashboard",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wsloth/ado-dashboard.git"
+  },
+  "author": "Wessel Loth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wsloth/ado-dashboard/issues"
+  },
+  "homepage": "https://github.com/wsloth/ado-dashboard#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2",
+    "husky": "^3.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  }
+}
