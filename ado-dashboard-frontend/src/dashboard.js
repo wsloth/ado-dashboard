@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit-element';
 
 import { AdoService } from './services/ado-service.js';
 import { when } from './utils/index.js';
+import { cardStyles, gridStyles } from './styles/index.js';
 
 import './components/header.js';
 
@@ -14,18 +15,19 @@ export class Dashboard extends LitElement {
   }
 
   static get styles() {
-    return css`
-      :host {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-      }
-      main {
-        flex-grow: 1;
-      }
-    `;
+    return [
+      gridStyles,
+      cardStyles,
+      css`
+        :host {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+        }
+      `,
+    ];
   }
 
   async connectedCallback() {
@@ -42,30 +44,38 @@ export class Dashboard extends LitElement {
     return html`
       <ado-header></ado-header>
 
-      <main>
-        <h3>Release Definitions</h3>
-        <ul>
-          ${when(releaseDefinitions, () =>
-            releaseDefinitions.map(
-              rd =>
-                html`
-                  <li>${rd.name}</li>
-                `,
-            ),
-          )}
-        </ul>
+      <main class="container">
+        <div class="col-25">
+          <div class="card">
+            <h2>Release Definitions</h2>
+            <ul>
+              ${when(releaseDefinitions, () =>
+                releaseDefinitions.map(
+                  rd =>
+                    html`
+                      <li>${rd.name}</li>
+                    `,
+                ),
+              )}
+            </ul>
+          </div>
+        </div>
 
-        <h3>Build Definitions</h3>
-        <ul>
-          ${when(buildDefinitions, () =>
-            buildDefinitions.map(
-              bd =>
-                html`
-                  <li>${bd.name}</li>
-                `,
-            ),
-          )}
-        </ul>
+        <div class="col-75">
+          <div class="card">
+            <h2>Build Definitions</h2>
+            <ul>
+              ${when(buildDefinitions, () =>
+                buildDefinitions.map(
+                  bd =>
+                    html`
+                      <li>${bd.name}</li>
+                    `,
+                ),
+              )}
+            </ul>
+          </div>
+        </div>
       </main>
     `;
   }

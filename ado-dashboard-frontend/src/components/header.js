@@ -7,9 +7,10 @@ export class Header extends LitElement {
       :host {
         background: ${backgroundAccent};
         width: 100%;
-        border-bottom: 1px solid #ccc;
       }
       header {
+        height: 79px;
+        border-bottom: 1px solid #ccc;
         padding: 0 32px;
       }
       header h1 {
