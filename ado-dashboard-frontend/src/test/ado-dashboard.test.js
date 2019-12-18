@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../ado-dashboard.js';
+import '../dashboard.js';
 
 describe('AdoDashboard', () => {
   it('has page "main" by default', async () => {

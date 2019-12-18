@@ -3,10 +3,13 @@ import { LitElement, html, css } from 'lit-element';
 import { AdoService } from './services/ado-service.js';
 import { when } from './utils/index.js';
 
-export class AdoDashboard extends LitElement {
+import './components/header.js';
+
+export class Dashboard extends LitElement {
   static get properties() {
     return {
       releaseDefinitions: Array,
+      buildDefinitions: Array,
     };
   }
 
@@ -19,17 +22,6 @@ export class AdoDashboard extends LitElement {
         align-items: center;
         justify-content: flex-start;
       }
-
-      header {
-        background: #fff;
-        display: block;
-        width: 100%;
-        border-bottom: 1px solid #ccc;
-      }
-      header h1 {
-        padding: 0 32px;
-      }
-
       main {
         flex-grow: 1;
       }
@@ -41,15 +33,14 @@ export class AdoDashboard extends LitElement {
 
     const adoService = new AdoService();
     this.releaseDefinitions = await adoService.getReleaseDefinitions();
+    this.buildDefinitions = await adoService.getBuildDefinitions();
   }
 
   render() {
-    const { releaseDefinitions } = this;
+    const { releaseDefinitions, buildDefinitions } = this;
 
     return html`
-      <header>
-        <h1>ADO Dashboard</h1>
-      </header>
+      <ado-header></ado-header>
 
       <main>
         <h3>Release Definitions</h3>
@@ -63,9 +54,21 @@ export class AdoDashboard extends LitElement {
             ),
           )}
         </ul>
+
+        <h3>Build Definitions</h3>
+        <ul>
+          ${when(buildDefinitions, () =>
+            buildDefinitions.map(
+              bd =>
+                html`
+                  <li>${bd.name}</li>
+                `,
+            ),
+          )}
+        </ul>
       </main>
     `;
   }
 }
 
-window.customElements.define('ado-dashboard', AdoDashboard);
+window.customElements.define('ado-dashboard', Dashboard);

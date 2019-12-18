@@ -25,8 +25,31 @@ export class AzureDevopsService {
     this.connection = new azdev.WebApi(ORGANISATION_URL, authHandler);
   }
 
+  async getBuildDefinitions() {
+    const client = await this.getBuildClient();
+    return client.getDefinitions(
+      this.projectName,
+      // A whole bunch of values where defaults can be used
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      // Values set to true to retrieve extra information
+      true,
+      true,
+    );
+  }
+
   async getLatestBuilds(projectCiDefinitionId: number) {
     const client = await this.getBuildClient();
+
     // TODO: Get the builds for a release definition
     return client.getBuilds(this.projectName, [34]);
   }
