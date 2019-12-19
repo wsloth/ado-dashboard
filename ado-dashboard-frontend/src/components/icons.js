@@ -1,3 +1,6 @@
+/**
+ * Icon SVG's fetched from Octicons https://octicons.github.com/
+ */
 import { html, css } from 'lit-element';
 import { textColor } from '../styles/index.js';
 
@@ -44,6 +47,32 @@ export const failedIcon = html`
   </svg>
 `;
 
+export const dashIcon = html`
+  <svg
+    class="icon icon-dash"
+    viewBox="0 0 8 16"
+    version="1.1"
+    width="8"
+    height="16"
+    aria-hidden="true"
+  >
+    <path fill-rule="evenodd" d="M0 7v2h8V7H0z"></path>
+  </svg>
+`;
+
+export const zapIcon = html`
+  <svg
+    class="icon icon-zap"
+    viewBox="0 0 10 16"
+    version="1.1"
+    width="10"
+    height="16"
+    aria-hidden="true"
+  >
+    <path fill-rule="evenodd" d="M10 7H6l3-7-9 9h4l-3 7 9-9z"></path>
+  </svg>
+`;
+
 export const statusIcon = (icon, color) =>
   html`
     <span class="icon--status icon--${color}">${icon}</span>
@@ -77,7 +106,6 @@ export const iconStyles = css`
   .icon--status.icon--orange {
     background-color: orange;
   }
-
   .icon--status.icon--grey {
     background-color: grey;
   }

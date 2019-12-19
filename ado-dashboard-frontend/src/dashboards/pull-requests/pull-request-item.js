@@ -1,6 +1,14 @@
 import { html, css } from 'lit-element';
 import { statusStyles, spacer8, spacer16 } from '../../styles/index.js';
-import { statusIcon, branchIcon, checkIcon, iconStyles } from '../../components/icons.js';
+import {
+  statusIcon,
+  branchIcon,
+  checkIcon,
+  failedIcon,
+  dashIcon,
+  zapIcon,
+  iconStyles,
+} from '../../components/icons.js';
 
 export const pullRequestStyles = [
   statusStyles,
@@ -35,18 +43,18 @@ const formatBranchName = targetRefName => {
 
 const formatBranchMergeStatus = status => {
   switch (status) {
-    case 0:
-      return 'Not Set';
-    case 1:
-      return 'Queued';
-    case 2:
-      return 'Conflicts';
+    case 0: // "Not Set"
+      return statusIcon(dashIcon, 'grey');
+    case 1: // Queued
+      return statusIcon(dashIcon, 'orange');
+    case 2: // Conflicts
+      return statusIcon(zapIcon, 'orange');
     case 3: // Succeeded
       return statusIcon(checkIcon, 'green');
-    case 4:
-      return 'Rejected by Policy';
-    case 5:
-      return 'Failure';
+    case 4: // "Rejected by Policy"
+      return statusIcon(dashIcon, 'grey');
+    case 5: // Failure
+      return statusIcon(failedIcon, 'red');
     default:
       throw new Error(`Status ${status} not found`);
   }
@@ -60,6 +68,12 @@ const formatPrStatusLabel = pr => {
   return '';
 };
 
+/**
+ * Renders a pull request line, containing the following:
+ * - A status icon
+ * - The title, Project, Branch and User
+ * - Whether the PR is a Draft or not
+ */
 export const pullRequestTemplate = pr => html`
   <div class="pr-item">
     <div class="pr-item__status">${formatBranchMergeStatus(pr.mergeStatus)}</div>
