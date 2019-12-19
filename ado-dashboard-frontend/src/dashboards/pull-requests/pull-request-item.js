@@ -23,7 +23,7 @@ export const pullRequestStyles = [
   css`
     .pr-item {
       padding: ${spacer8};
-      border-bottom: 1px solid lightgrey;
+      border-bottom: 1px solid #22282d;
       display: flex;
     }
     .pr-item__status {

@@ -2,7 +2,7 @@
  * Icon SVG's fetched from Octicons https://octicons.github.com/
  */
 import { html, css } from 'lit-element';
-import { textColor } from '../styles/index.js';
+import { textColor, green, red } from '../styles/index.js';
 
 export const branchIcon = html`
   <svg
@@ -98,10 +98,10 @@ export const iconStyles = css`
     margin-left: 3px;
   }
   .icon--status.icon--green {
-    background-color: green;
+    background-color: ${green};
   }
   .icon--status.icon--red {
-    background-color: red;
+    background-color: ${red};
   }
   .icon--status.icon--orange {
     background-color: orange;
