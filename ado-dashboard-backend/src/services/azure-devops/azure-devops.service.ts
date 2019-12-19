@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import * as azdev from 'azure-devops-node-api';
 import { IReleaseApi } from 'azure-devops-node-api/ReleaseApi';
 import { IBuildApi } from 'azure-devops-node-api/BuildApi';
+import { IGitApi } from 'azure-devops-node-api/GitApi';
 
 @Injectable()
 export class AzureDevopsService {
@@ -59,11 +60,20 @@ export class AzureDevopsService {
     return client.getReleaseDefinitions(this.projectName);
   }
 
+  async getPullRequests() {
+    const client = await this.getGitClient();
+    return client.getPullRequestsByProject(this.projectName, {});
+  }
+
   private async getBuildClient(): Promise<IBuildApi> {
     return this.connection.getBuildApi();
   }
 
   private async getReleaseClient(): Promise<IReleaseApi> {
     return this.connection.getReleaseApi();
+  }
+
+  private async getGitClient(): Promise<IGitApi> {
+    return this.connection.getGitApi();
   }
 }
