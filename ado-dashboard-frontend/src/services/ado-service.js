@@ -9,6 +9,10 @@ export class AdoService {
     return this.get('releases/definitions');
   }
 
+  async getPullRequests() {
+    return this.get('pulls');
+  }
+
   get(url) {
     return fetch(`${this.baseUrl}${url}`).then(response => response.json());
   }
