@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit-element';
 
 import { AdoService } from '../services/ado-service.js';
 import { when } from '../utils/index.js';
-import { cardStyles, gridStyles } from '../styles/index.js';
+import { cardStyles, gridStyles, typographyStyles } from '../styles/index.js';
 import { pullRequestTemplate, pullRequestStyles } from './pull-requests/pull-request-item.js';
 
 export class PullRequestsDashboard extends LitElement {
@@ -14,6 +14,7 @@ export class PullRequestsDashboard extends LitElement {
 
   static get styles() {
     return [
+      typographyStyles,
       gridStyles,
       cardStyles,
       pullRequestStyles,

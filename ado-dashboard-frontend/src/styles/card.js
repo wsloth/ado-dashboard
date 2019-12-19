@@ -7,7 +7,6 @@ export const cardStyles = css`
     background-color: ${backgroundAccent};
     padding: ${spacer16};
     height: 100%;
-    border-radius: 3px;
   }
 
   .card > h1,

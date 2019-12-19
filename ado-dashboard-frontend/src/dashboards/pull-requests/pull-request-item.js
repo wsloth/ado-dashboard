@@ -1,5 +1,11 @@
 import { html, css } from 'lit-element';
-import { statusStyles, spacer8, spacer16 } from '../../styles/index.js';
+import {
+  statusStyles,
+  spacer8,
+  spacer16,
+  font19Mixin,
+  fontMonospacedMixin,
+} from '../../styles/index.js';
 import {
   statusIcon,
   branchIcon,
@@ -29,11 +35,11 @@ export const pullRequestStyles = [
       flex-grow: 1;
     }
     .pr-item__container > .pr-item__title {
-      font-size: 20px;
+      ${font19Mixin()}
       margin-bottom: ${spacer8};
     }
     .pr-item__container > .pr-item__subtitle > .subtitle__branch-name {
-      font-family: 'Source Code Pro', monospace;
+      ${fontMonospacedMixin()}
     }
 
     .pr-item__extra {

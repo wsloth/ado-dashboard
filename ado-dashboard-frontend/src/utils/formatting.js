@@ -1,3 +1,6 @@
+/**
+ * Example output: '18 december'.
+ */
 export const formatDate = date => {
   const d = new Date(date);
   const options = {
@@ -8,6 +11,9 @@ export const formatDate = date => {
   return d.toLocaleDateString(undefined, options);
 };
 
+/**
+ * Example output: '18 december, 16:35'.
+ */
 export const formatDateTime = date => {
   const d = new Date(date);
   const options = {

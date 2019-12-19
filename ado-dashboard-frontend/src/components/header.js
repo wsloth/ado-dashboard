@@ -9,8 +9,7 @@ export class Header extends LitElement {
         width: 100%;
       }
       header {
-        height: 79px;
-        border-bottom: 1px solid #ccc;
+        height: 80px;
         padding: 0 32px;
       }
       header h1 {

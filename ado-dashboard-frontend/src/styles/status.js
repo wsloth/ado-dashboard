@@ -1,5 +1,9 @@
 import { css } from 'lit-element';
 
+/**
+ * Contains styles for a "pill"-esque label.
+ * Example of usage: `<span class="status status--info">Info</span>`
+ */
 export const statusStyles = css`
   span.status {
     padding: 2px 6px;
