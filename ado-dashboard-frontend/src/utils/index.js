@@ -1,1 +1,2 @@
-export * from './when';
+export * from './when.js';
+export * from './formatting.js';

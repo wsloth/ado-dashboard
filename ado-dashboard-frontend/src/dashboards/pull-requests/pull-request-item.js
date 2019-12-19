@@ -9,6 +9,7 @@ import {
   zapIcon,
   iconStyles,
 } from '../../components/icons.js';
+import { formatDateTime } from '../../utils/index.js';
 
 export const pullRequestStyles = [
   statusStyles,
@@ -24,12 +25,20 @@ export const pullRequestStyles = [
       align-items: center;
       margin-right: ${spacer16};
     }
-    .pr-item__title {
+    .pr-item__container {
+      flex-grow: 1;
+    }
+    .pr-item__container > .pr-item__title {
       font-size: 20px;
       margin-bottom: ${spacer8};
     }
-    .pr-item__subtitle > .subtitle__branch-name {
+    .pr-item__container > .pr-item__subtitle > .subtitle__branch-name {
       font-family: 'Source Code Pro', monospace;
+    }
+
+    .pr-item__extra {
+      display: flex;
+      align-items: center;
     }
   `,
 ];
@@ -83,6 +92,10 @@ export const pullRequestTemplate = pr => html`
       <div class="pr-item__subtitle">
         ${pr.repository.name} - ${formatBranchName(pr.targetRefName)} - ${pr.createdBy.displayName}
       </div>
+    </div>
+
+    <div class="pr-item__extra">
+      <div class="pr-item__timestamp">${formatDateTime(pr.creationDate)}</div>
     </div>
   </div>
 `;
