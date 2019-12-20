@@ -28,31 +28,26 @@ export class AzureDevopsService {
 
   async getBuildDefinitions() {
     const client = await this.getBuildClient();
-    return client.getDefinitions(
-      this.projectName,
-      // A whole bunch of values where defaults can be used
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      // Values set to true to retrieve extra information
-      true,
-      true,
-    );
+    return client.getDefinitions(this.projectName);
   }
 
-  async getLatestBuilds(projectCiDefinitionId: number) {
+  /**
+   * Get all of the builds that happened accross all repositories in the last 7 days.
+   */
+  async getLatestBuilds() {
     const client = await this.getBuildClient();
 
-    // TODO: Get the builds for a release definition
-    return client.getBuilds(this.projectName, [34]);
+    // Get all definitions
+    const definitions = await client.getDefinitions(this.projectName);
+
+    // Get all builds from the last 7 days
+    return client.getBuilds(
+      this.projectName,
+      definitions.map(d => d.id),
+      null,
+      null,
+      new Date(new Date().getTime() - 60 * 60 * 24 * 7 * 1000), // 7 Days
+    );
   }
 
   async getReleaseDefinitions() {

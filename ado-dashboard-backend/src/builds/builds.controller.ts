@@ -10,8 +10,8 @@ export class BuildsController {
     return this.azureDevopsService.getBuildDefinitions();
   }
 
-  @Get(':ciid')
-  async getLatestBuilds(@Param('ciid') ciId: number) {
-    return this.azureDevopsService.getLatestBuilds(ciId);
+  @Get('latest')
+  async getLatestBuilds() {
+    return this.azureDevopsService.getLatestBuilds();
   }
 }

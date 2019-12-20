@@ -1,8 +1,8 @@
 export class AdoService {
   baseUrl = 'http://localhost:3000/api/';
 
-  async getBuildDefinitions() {
-    return this.get('builds/definitions');
+  async getLatestBuilds() {
+    return this.get('builds/latest'); // Note: This endpoint can be very slow :)
   }
 
   async getReleaseDefinitions() {
